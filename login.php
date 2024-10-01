@@ -15,17 +15,26 @@ if (isset($_SESSION["id"])){
     <title>Login</title>
 </head>
 <body>
+<h1 style="text-align: center;" class="mt-3">WEBTOON</h1>
     <div class="container-lg">
-        <h1 style="text-align: center ;mt-4">WEBTOON</h1>
-        <?php include "nav.php" ?>
+        <center>
+            <?php include "nav.php" ?>
+        </center>
+        
         <div class="row">
             <div class="col-sm-8 col-md-6 col-lg-4 mx-auto">
+                <?php
+                if(isset($_SESSION['error'])){
+                    echo "<div class='alert alert-danger'>Username or Password are incorrect</div>";
+                    unset($_SESSION['error']);
+                }
+                ?>
                 <div class="card mt-4">
                     <h5 class="card-header">เข้าสู่ระบบ</h5>
-                    <div class="card-boby">
+                    <div class="card-body">
                         <form action="verify.php" method="post">
                             <div class="form-group mt-3">
-                                <label for="login" class="form-label">Password :</label>
+                                <label for="login" class="form-label">Username :</label>
                                 <input id="login" type="text" class="form-control" name="login">
                             </div>
                             <div>
@@ -43,7 +52,7 @@ if (isset($_SESSION["id"])){
         </div>
         <br>
         <div style="text-align: center;">
-            ถ้ายังไม่ได้เป็นสมาชิก <a href="register.html">กรุณาสมัครสมาชิก</a>
+            ถ้ายังไม่ได้เป็นสมาชิก <a href="register.php">กรุณาสมัครสมาชิก</a>
         </div>
     </div>
 </body>
