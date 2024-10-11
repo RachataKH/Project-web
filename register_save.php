@@ -19,6 +19,6 @@
     }
     
     $conn = null;
-    header("location:register.php");
+    header("location:resister.php");
     die();
 ?>

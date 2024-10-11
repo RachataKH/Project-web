@@ -55,10 +55,14 @@ session_start();
         <table class="table table-striped">
             <?php
                 $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
-                $sql = "SELECT category.name,post.title,post.id,user.login,post.post_date FROM post as post INNER JOIN user as user ON (post.user_id=user.id) INNER JOIN category as category ON (post.cat_id=category.id) ORDER BY post.post_date DESC";
+                $sql = "SELECT category.name,post.title,post.id,user.login,post.post_date FROM post INNER JOIN user ON (post.user_id=user.id) INNER JOIN category as category ON (post.cat_id=category.id) ORDER BY post.post_date DESC";
                 $result = $conn->query($sql);
                 while($row = $result->fetch()){
-                    echo "<tr><td>[ $row[0] ] <a href=post.php?id=$row[2] style=text-decoration:none>$row[1]</a><br>$row[3] - $row[4]</td></tr>";
+                    echo "<tr><td>[ $row[0] ] <a href=post.php?id=$row[2] style=text-decoration:none>$row[1]</a>";
+                    if(isset($_SESSION['id']) && $_SESSION["role"] == 'a'){
+                        echo "<a onclick='myFunction($row[2])' class='btn btn-danger' style='float:right' role='button'><i class='bi bi-trash'></i></a>";
+                    }
+                    echo "<br>$row[3] - $row[4]</td></tr>";
                 }
                 $conn = null;
             ?>
@@ -68,6 +72,14 @@ session_start();
     <ul class="dropdown-menu" aria-labelledby="Button2">
         <li><a href="#" class="dropdown-item"></a></li>
     </ul>
+
+    <script>
+        function myFunction(a){
+            if(confirm("Are you sure?") == true){
+                location.href = `delete.php?id=${a}`;
+            }
+        }
+    </script>
 </body>
 
 </html>
