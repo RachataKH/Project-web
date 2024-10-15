@@ -47,6 +47,7 @@
         </div>
 
         <?php
+                $id = 0;
                 $num = $_GET['id'];
 
                 $sql_post = "SELECT comment.id,comment.content,comment.post_date,user.login FROM comment INNER JOIN user ON (comment.user_id=user.id) WHERE post_id=$num ORDER BY comment.post_date";
@@ -54,8 +55,9 @@
                 $result_post = $conn->query($sql_post);
 
                 while($post_fetch_post = $result_post->fetch()){
+                    $id = $id+1;
                     echo "<div class='card text-dark bg-white border-info mt-3 col-lg-6 mx-auto'>
-                            <div class='card-header bg-info text-white'>ความคิดเห็นที่ $post_fetch_post[0]</div>
+                            <div class='card-header bg-info text-white'>ความคิดเห็นที่ $id</div>
                             <div class='card-body'>
                                 <div class='mt-1'>$post_fetch_post[1]</div>
                                 <div class='mt-3 fw-light fst-italic'>$post_fetch_post[3] : $post_fetch_post[2]</div>

@@ -47,12 +47,17 @@ if (isset($_SESSION['id'])) {
                             </div>
                             <div class="mb-3">
                                 <label for="pwd" class="form-label">Password :</label>
-                                <input id="pwd" type="password" placeholder="รหัสผ่าน" class="form-control" name="pwd">
+                                <div class="input-group">
+                                    <input id="pwd" type="password" placeholder="รหัสผ่าน" class="form-control" id="pwd" name="pwd">
+                                    <button class="btn btn-secondary" type="button" onclick="tpwd()" id="toggleBtn"><i class="bi bi-eye"></i></button>
+                                </div>
                             </div>
+
                             <div class="text-center">
                                 <input type="submit" value="Login" class="btn btn-success">
                                 <a href="login.php" class="btn btn-danger">Reset</a>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -61,6 +66,20 @@ if (isset($_SESSION['id'])) {
         </form>
 
         <br>
+
+        <script>
+            function tpwd() {
+            var pwd = document.getElementById("pwd");
+            var btn = document.getElementById("toggleBtn");     
+            if (pwd.type == "password") {
+                pwd.type = "text";
+                btn.innerHTML = "<i class='bi bi-eye-slash'></i>";
+            } else {
+                pwd.type = "password";
+                btn.innerHTML = "<i class='bi bi-eye'></i>";
+            }
+        }
+        </script>
 
         <div style="text-align: center;">
             ถ้ายังไม่ได้เป็นสมาชิก <a href="register.php">กรุณาสมัครสมาชิก</a>
