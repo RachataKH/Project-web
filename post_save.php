@@ -1,18 +1,14 @@
 <?php
     session_start();
-    $category = $_POST['category'];
-    $topic = $_POST['topic'];
     $comment = $_POST['comment'];
+    $post_id = $_POST['post_id'];
+    $user_id = $_SESSION['user_id'];
 
     $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
-
-    $id = $_SESSION['user_id'];
-
-    $sql = "INSERT INTO post (title,content,post_date,cat_id,user_id) VALUES ('$topic','$comment',Now(),'$category','$id')";
+    
+    $sql = "INSERT INTO comment(content,post_date,user_id,post_id) VALUES ('$comment',Now(),$user_id,$post_id)";
 
     $conn->exec($sql);
 
-    $conn = null;
-    
-    header("location:index.php");
+    header("location: post.php?id=$post_id")
 ?>

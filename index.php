@@ -67,6 +67,7 @@
 
         <table class="table table-striped">
             <?php
+<<<<<<< HEAD
             $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8", "root", "");
             if($_GET['id'] == 0){
                 $sql = "SELECT category.name,post.title,post.id,user.login,post.post_date,user.role FROM post INNER JOIN user ON (post.user_id=user.id) INNER JOIN category as category ON (post.cat_id=category.id) ORDER BY post.post_date DESC";
@@ -89,6 +90,16 @@
                         }
                     }
                 
+=======
+                $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+                $sql = "SELECT category.name,post.title,post.id,user.login,post.post_date FROM post INNER JOIN user ON (post.user_id=user.id) INNER JOIN category as category ON (post.cat_id=category.id) ORDER BY post.post_date DESC";
+                $result = $conn->query($sql);
+                while($row = $result->fetch()){
+                    echo "<tr><td>[ $row[0] ] <a href=post.php?id=$row[2] style=text-decoration:none>$row[1]</a>";
+                    if(isset($_SESSION['id']) && $_SESSION["role"] == 'a'){
+                        echo "<a onclick='myFunction($row[2])' class='btn btn-danger' style='float:right' role='button'><i class='bi bi-trash'></i></a>";
+                    }
+>>>>>>> 1a2555786482b4b0d10423c74d1ef7e378e6cc4a
                     echo "<br>$row[3] - $row[4]</td></tr>";
                 }
             }
@@ -102,8 +113,13 @@
     </ul>
 
     <script>
+<<<<<<< HEAD
         function confirmdelete(a) {
             if (confirm("คุณต้องการจะลบหรือไม่") == true) {
+=======
+        function myFunction(a){
+            if(confirm("Are you sure?") == true){
+>>>>>>> 1a2555786482b4b0d10423c74d1ef7e378e6cc4a
                 location.href = `delete.php?id=${a}`;
             }
         }

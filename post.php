@@ -24,16 +24,36 @@
             <?php
                 $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
 
+<<<<<<< HEAD
                 $sql = "SELECT post.title,post.content,post.post_date,user.login FROM post INNER JOIN user ON (post.user_id=user.id) WHERE $post_id=post.id";
+=======
+                $sql = "SELECT title,content,post_date FROM post WHERE $post_id=id";
+>>>>>>> 1a2555786482b4b0d10423c74d1ef7e378e6cc4a
 
                 $result = $conn->query($sql);
 
                 $post_fetch = $result->fetch();
+<<<<<<< HEAD
+=======
+
+                $i=1;
+                while($row=$result->fetch()){
+                    echo "<div class='card border info mt-3'>";
+                    echo "<div class='card-header bg-info text-white'>ความคิดเห็นที่ $i</div>";
+                    echo "<div class='card-body'>$row[0]";
+                    echo "<div class='mt-2'>$row[1] - $row[2]</div></div></div>";
+                    $i+=1;
+                }
+>>>>>>> 1a2555786482b4b0d10423c74d1ef7e378e6cc4a
             ?>
             <div class="card-header bg-primary text-white"><?php echo $post_fetch[0]?></div>
             <div class="card-body">
                 <div class="mt-1"><?php echo $post_fetch[1]?></div>
+<<<<<<< HEAD
                 <div class="mt-3 fw-light fst-italic"><?php echo "$post_fetch[3] : $post_fetch[2]"?></div>
+=======
+                <div class="mt-3 fw-light fst-italic"><?php echo $post_fetch[2]?></div>
+>>>>>>> 1a2555786482b4b0d10423c74d1ef7e378e6cc4a
             </div>
         </div>
 
@@ -41,11 +61,16 @@
                 $id = 0;
                 $num = $_GET['id'];
 
+<<<<<<< HEAD
                 $sql_post = "SELECT comment.id,comment.content,comment.post_date,user.login,user.role FROM comment INNER JOIN user ON (comment.user_id=user.id) WHERE post_id=$num ORDER BY comment.post_date";
+=======
+                $sql_post = "SELECT comment.id,comment.content,comment.post_date,user.login FROM comment INNER JOIN user ON (comment.user_id=user.id) WHERE post_id=$num ORDER BY comment.post_date";
+>>>>>>> 1a2555786482b4b0d10423c74d1ef7e378e6cc4a
 
                 $result_post = $conn->query($sql_post);
 
                 while($post_fetch_post = $result_post->fetch()){
+<<<<<<< HEAD
                     if($post_fetch_post[4] != "b"){
                         $id = $id+1;
                         echo "<div class='card text-dark bg-white border-info mt-3 col-lg-6 mx-auto'>
@@ -56,6 +81,16 @@
                                 </div>
                             </div>";
                     }
+=======
+                    $id = $id+1;
+                    echo "<div class='card text-dark bg-white border-info mt-3 col-lg-6 mx-auto'>
+                            <div class='card-header bg-info text-white'>ความคิดเห็นที่ $id</div>
+                            <div class='card-body'>
+                                <div class='mt-1'>$post_fetch_post[1]</div>
+                                <div class='mt-3 fw-light fst-italic'>$post_fetch_post[3] : $post_fetch_post[2]</div>
+                            </div>
+                        </div>";
+>>>>>>> 1a2555786482b4b0d10423c74d1ef7e378e6cc4a
                 }
         ?>
 

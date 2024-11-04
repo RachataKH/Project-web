@@ -49,14 +49,37 @@
 									<input type="text" class="form-control" name="login" required>
 								</div>
 							</div>
+
+
 							<div class="row mt-3">
 								<div class="col-sm-3 col-md-3 col-lg-3 mx-auto my-auto">
 									รหัสผ่าน:
 								</div>
 								<div class="col-sm-9 col-md-9 col-lg-9 mx-auto my-auto">
-									<input type="password" class="form-control" name="pwd" required>
+									<input type="password" class="form-control" name="pwd" id="pwd" required>
 								</div>
 							</div>
+							<div class="row mt-3">
+								<div class="col-sm-3 col-md-3 col-lg-3 mx-auto my-auto">
+									ใส่รหัสผ่านซ้ำ:
+								</div>
+								<div class="col-sm-9 col-md-9 col-lg-9 mx-auto my-auto">
+									<input type="password" class="form-control" name="comfirmpwd" id="comfirmpwd" onblur="pass()" required>
+								</div>
+							</div>
+							<script>
+								function pass(){
+									let pwd = document.getElementById('pwd');
+									let cpwd = document.getElementById('comfirmpwd');
+									if(pwd.value !== cpwd.value){
+										alert("รหัสผ่านทั้งสองไม่ตรงกัน");
+										pwd.value = "";
+										comfirmpwd.value = "";
+									}
+								}
+							</script>
+
+
 							<div class="row mt-3">
 								<div class="col-sm-3 col-md-3 col-lg-3 mx-auto my-auto">
 									ชื่อ-นามสกุล:
@@ -99,4 +122,5 @@
 		<div align="center"><a href="index.php">กลับไปหน้าหลัก</a></div>
 	</div>
 </body>
+
 </html>
